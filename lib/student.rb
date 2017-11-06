@@ -44,7 +44,7 @@ class Student
     end
   end
 
-  def self.create(name, grade)
+  def self.create(name:, grade:)
     student = Student.new(name, grade)
     student.save
     student
@@ -56,7 +56,7 @@ class Student
     # name = row[1]
     # grade = row[2]
     # self.new(id, name, grade)
-    student = Student.new(row)
+    student = Student.new
     student.id = row[0]
     student.name = row[1]
     student.grade = row[2]
@@ -68,7 +68,6 @@ class Student
       SELECT *
       FROM students
       WHERE name = ?
-      LIMIT 1
     SQL
 
     DB[:conn].execute(sql,name).map do |row|
